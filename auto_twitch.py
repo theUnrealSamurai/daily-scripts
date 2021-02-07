@@ -1,24 +1,22 @@
+#!/usr/bin/env python3
+
 import os
 from time import sleep 
-import subprocess
+import schedule
 
 def open_stream_and_shutdown():
     os.system("google-chrome https://www.twitch.tv/brawlhalla")
     os.system("firefox https://www.twitch.tv/brawlhalla")
     os.system("shutdown +75")
+    
+    #An extray layer of fail safe shutdown 
+    sleep(4500)
+    os.system("shutdown -h now")
 
+schedule.every().tuesday.at("23:27").do(open_stream_and_shutdown)
+schedule.every().friday.at("23:27").do(open_stream_and_shutdown)
 
-def time():
-    pass
-
-
-def failsafe_shutdown():
-    sleep(4200)
-    subprocess.Popen(['notify-send', "Yo! This thing haven't died yet"])
-    print("shit executed man")
-
-
-if __name__ == '__main__':
-    open_stream_and_shutdown()
-    failsafe_shutdown()    
+while True:
+    schedule.run_pending()
+    sleep(60)
 
