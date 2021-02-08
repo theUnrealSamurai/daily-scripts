@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+#this above line is called the shebang line, which allows you to run the script on background with the nohup command
+# you also gotta change the permission for the file which is "chmod +x auto_twitch.py" navigate to the folder where the file is present then type the command
+# this whole thing was the command for me "nohup python3 /home/samurai/Code/daily-scripts/auto_twitch.py &"
 
 import os
 from time import sleep 

@@ -5,14 +5,6 @@ from selenium import webdriver
 
 # https: // gogoanime.sh/great-teacher-onizuka-episode-1
 
-# set chromedriver to interact with chrome.exe to scrape webpage
-# if (platform.system() == 'Windows'):
-# 	driver = webdriver.Chrome("chromedriver/chromedriver_win32.exe")
-# elif (platform.system() == 'Linux'):
-# 	driver = webdriver.Chrome("chromedriver/chromedriver_linux64")
-# else:
-# 	print("\nqPull will not work with this operating system.")
-
 
 def generate_links(anime_name, no_of_episodes):
     """This function generates the links by adding the gogoanime website domain anime name and the episode number and returns a list with all links"""
@@ -25,13 +17,28 @@ def generate_links(anime_name, no_of_episodes):
     return page_links
 
 
-def scrape_download_page_link(page_links):
-    """Takes in the main anime page link and returns the download page links"""
-    pass 
+def scrape_download_page_link(page_link):
+    """Takes in the main anime page link and returns the download page link"""
+    
+    page = requests.get(page_link)
+    soup = BeautifulSoup(page.content, 'html.parser')
+    temp_soup = soup.find("li", class_="dowloads")
+    download_page_link = temp_soup.find('a')['href']
+
+    return download_page_link
+
+
+def trigger_download(download_page_link):
+    page = requests.get(download_page_link)
+    soup = BeautifulSoup(page.content, 'html.parser')
+
+
 
 
 if __name__ == '__main__':
-    anime_name = input("Enter the name of the anime seperated by \"-\": ")
-    no_of_episodes = int(input("Enter the number of episodes you want to download: "))
-    page_links = generate_links(anime_name, no_of_episodes)
-    print(page_links[3])
+    # anime_name = input("Enter the name of the anime seperated by \"-\": ")
+    # no_of_episodes = int(input("Enter the number of episodes you want to download: "))
+    # page_links = generate_links(anime_name, no_of_episodes)
+
+    for page_link in page_links:
+        scrape_download_page_link(["https://gogoanime.sh/great-teacher-onizuka-episode-1"])
