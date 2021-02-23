@@ -19,6 +19,11 @@ def open_stream_and_shutdown():
 schedule.every().tuesday.at("23:27").do(open_stream_and_shutdown)
 schedule.every().friday.at("23:27").do(open_stream_and_shutdown)
 
+# yet another fail safe shutdown
+schedule.every().wednesday.at("00:35").do(os.system, "shutdown -h now")
+schedule.every().saturday.at("00:35").do(os.system, "shutdown -h now")
+
+
 while True:
     schedule.run_pending()
     sleep(60)

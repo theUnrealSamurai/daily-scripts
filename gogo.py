@@ -31,7 +31,12 @@ def scrape_download_page_link(page_link):
 def trigger_download(download_page_link):
     page = requests.get(download_page_link)
     soup = BeautifulSoup(page.content, 'html.parser')
-
+    temp_soup = soup.find_all("div", class_ = "mirror_link")
+    result = temp_soup[0].find_all('a')
+    for i in result:
+        print(i['href'])
+    print(result)
+    return result
 
 
 
@@ -40,5 +45,5 @@ if __name__ == '__main__':
     # no_of_episodes = int(input("Enter the number of episodes you want to download: "))
     # page_links = generate_links(anime_name, no_of_episodes)
 
-    for page_link in page_links:
-        scrape_download_page_link(["https://gogoanime.sh/great-teacher-onizuka-episode-1"])
+    downloadpage = scrape_download_page_link("https://gogoanime.sh/great-teacher-onizuka-episode-1")
+    trigger_download(downloadpage)
