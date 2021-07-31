@@ -14,7 +14,8 @@ def open_stream_and_shutdown():
     os.system("firefox https://www.twitch.tv/brawlhalla")
     os.system("shutdown +75")
     
-    #An extray layer of fail safe shutdown 
+    #An extray layer of fail safe shutdown
+    #stream lasts for 4500 seconds, triggering a shutdown command after the stream
     sleep(4500)
     os.system("shutdown -h now")
 
