@@ -10,7 +10,7 @@ def generate_links(anime_name, no_of_episodes):
     """This function generates the links by adding the gogoanime website domain anime name and the episode number and returns a list with all links"""
     
     page_links = [] #list to store the address of the main anime webpage
-    domain = "https://gogoanime.sh/"
+    domain = "https://gogoanime.pe/"
     for episode_number in range(no_of_episodes):
         page_link = domain + anime_name + "-episode-" + str(episode_number+1) #adding 1 cause the python index starts from 0 
         page_links.append(page_link)
@@ -45,5 +45,5 @@ if __name__ == '__main__':
     # no_of_episodes = int(input("Enter the number of episodes you want to download: "))
     # page_links = generate_links(anime_name, no_of_episodes)
 
-    downloadpage = scrape_download_page_link("https://gogoanime.sh/great-teacher-onizuka-episode-1")
+    downloadpage = scrape_download_page_link("https://gogoanime.pe/great-teacher-onizuka-episode-1")
     trigger_download(downloadpage)
