@@ -7,7 +7,8 @@ import os
 from glob import glob
 from tqdm import tqdm
 
-path = '/home/roshan/Pictures/test/*/*'
+path = '/home/roshan/Pictures/test'
+path = os.path.join(path, '*/*')
 
 log = open('log.txt', 'w')
 log.write("The list of deleted files:\n")
